@@ -49,7 +49,6 @@ def get_model(input_size=(28, 28, 1)):
 
 if __name__ == "__main__":
     # setting up the TF_CONFIG environmental variable for distributed training
-
     if os.environ['ROLE'] == 'master':
         tf_config = \
             '''{
@@ -70,6 +69,8 @@ if __name__ == "__main__":
             }'''
 
     os.environ['TF_CONFIG'] = tf_config
+
+    print(os.environ['TF_CONFIG'])
 
     strategy = tf.distribute.MultiWorkerMirroredStrategy()
     task_type = strategy.cluster_resolver.task_type

@@ -6,5 +6,4 @@ COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-ENV ROLE=None
 ENTRYPOINT ["python", "main.py"]
