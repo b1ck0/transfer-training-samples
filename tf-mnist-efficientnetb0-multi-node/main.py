@@ -69,6 +69,8 @@ if __name__ == "__main__":
                 "task": {"type": "worker", "index": 0}
             }
 
+    os.environ['TF_CONFIG'] = tf_config
+
     strategy = tf.distribute.MultiWorkerMirroredStrategy()
     task_type = strategy.cluster_resolver.task_type
     task_id = strategy.cluster_resolver.task_id
