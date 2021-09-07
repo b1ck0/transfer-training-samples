@@ -70,6 +70,7 @@ if __name__ == "__main__":
 
     os.environ['TF_CONFIG'] = tf_config
 
+    print(os.environ['ROLE'])
     print(os.environ['TF_CONFIG'])
 
     strategy = tf.distribute.MultiWorkerMirroredStrategy()
