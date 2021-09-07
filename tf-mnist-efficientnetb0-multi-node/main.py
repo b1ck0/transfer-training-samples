@@ -89,5 +89,6 @@ if __name__ == "__main__":
             tf.data.experimental.AutoShardPolicy.DATA
 
         train = train.with_options(options)
+        valid = valid.with_options(options)
 
     model.fit(train, validation_data=valid, epochs=10)
