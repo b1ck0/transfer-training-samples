@@ -52,22 +52,22 @@ if __name__ == "__main__":
 
     if os.environ['ROLE'] == 'master':
         tf_config = \
-            {
+            '''{
                 "cluster": {
                     "worker": ["10.31.234.86:2222"],
                     "chief": ["10.31.234.148:2222"]
                 },
                 "task": {"type": "chief", "index": 0}
-            }
+            }'''
     else:
         tf_config = \
-            {
+            '''{
                 "cluster": {
                     "worker": ["10.31.234.86:2222"],
                     "chief": ["10.31.234.148:2222"]
                 },
                 "task": {"type": "worker", "index": 0}
-            }
+            }'''
 
     os.environ['TF_CONFIG'] = tf_config
 
