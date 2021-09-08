@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:latest-gpu
+FROM us-docker.pkg.dev/vertex-ai/training/tf-gpu.2-6:latest
 
 WORKDIR /app/
 COPY main.py main.py
