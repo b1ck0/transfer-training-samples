@@ -84,11 +84,6 @@ if __name__ == "__main__":
     print(os.environ['TF_CONFIG'])
 
     strategy = tf.distribute.experimental.ParameterServerStrategy()
-    task_type = strategy.cluster_resolver.task_type
-    task_id = strategy.cluster_resolver.task_id
-
-    per_worker_batch = 32
-    global_batch_size = strategy.num_replicas_in_sync * per_worker_batch
 
     with strategy.scope():
         model = get_model(input_size=(28, 28, 1))
