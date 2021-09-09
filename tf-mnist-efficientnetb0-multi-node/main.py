@@ -73,7 +73,10 @@ if __name__ == "__main__":
     print(os.environ['ROLE'])
     print(os.environ['TF_CONFIG'])
 
-    strategy = tf.distribute.MultiWorkerMirroredStrategy()
+    communication_options = tf.distribute.experimental.CommunicationOptions(
+        implementation=tf.distribute.experimental.CollectiveCommunication.NCCL)
+
+    strategy = tf.distribute.MultiWorkerMirroredStrategy(communication_options=communication_options)
     task_type = strategy.cluster_resolver.task_type
     task_id = strategy.cluster_resolver.task_id
 
