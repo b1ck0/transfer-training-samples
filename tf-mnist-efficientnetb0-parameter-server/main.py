@@ -33,16 +33,7 @@ def get_model(input_size=(28, 28, 1)):
 
     outputs = tf.keras.layers.Dense(10, activation='softmax', name='OUTPUT')(x)
 
-    model = tf.keras.models.Model(inputs=inputs, outputs=outputs)
-
-    model.compile(
-        optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
-        loss=tf.keras.losses.SparseCategoricalCrossentropy(),
-        metrics=['accuracy'],
-        steps_per_execution=10
-    )
-
-    return model
+    return tf.keras.models.Model(inputs=inputs, outputs=outputs)
 
 
 if __name__ == "__main__":
@@ -87,6 +78,13 @@ if __name__ == "__main__":
 
     with strategy.scope():
         model = get_model(input_size=(28, 28, 1))
+
+    model.compile(
+        optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+        loss=tf.keras.losses.SparseCategoricalCrossentropy(),
+        metrics=['accuracy'],
+        steps_per_execution=10
+    )
 
     train = tf.keras.utils.experimental.DatasetCreator(dataset_fn)
     model.fit(train, epochs=10, steps_per_epoch=1875)
